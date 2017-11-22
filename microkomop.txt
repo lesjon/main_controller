@@ -1,0 +1,93 @@
+Configuration	microkomop
+STM32CubeMX 	4.21.0
+Date	10/18/2017
+MCU	STM32F301R8Tx
+
+
+
+PERIPHERALS	MODES	FUNCTIONS	PINS
+I2C1	I2C	I2C1_SCL	PB6
+I2C1	I2C	I2C1_SDA	PB7
+RCC	Crystal/Ceramic Resonator	RCC_OSC_IN	PF0-OSC_IN
+RCC	Crystal/Ceramic Resonator	RCC_OSC_OUT	PF1-OSC_OUT
+SPI2	Full-Duplex Master	SPI2_MISO	PB14
+SPI2	Full-Duplex Master	SPI2_MOSI	PB15
+SPI2	Full-Duplex Master	SPI2_SCK	PB13
+SPI3	Full-Duplex Master	SPI3_MISO	PC11
+SPI3	Full-Duplex Master	SPI3_MOSI	PC12
+SPI3	Full-Duplex Master	SPI3_SCK	PC10
+SYS	Serial Wire	SYS_JTCK-SWCLK	PA14
+SYS	Serial Wire	SYS_JTMS-SWDIO	PA13
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+TIM1	Internal Clock	TIM1_VS_ClockSourceINT	VP_TIM1_VS_ClockSourceINT
+TIM2	Internal Clock	TIM2_VS_ClockSourceINT	VP_TIM2_VS_ClockSourceINT
+TIM2	PWM Generation CH2	TIM2_CH2	PA1
+USART2	Asynchronous	USART2_RX	PA3
+USART2	Asynchronous	USART2_TX	PA2
+USART3	Asynchronous	USART3_RX	PB8
+USART3	Asynchronous	USART3_TX	PB9
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+5	PF0-OSC_IN	RCC_OSC_IN	
+6	PF1-OSC_OUT	RCC_OSC_OUT	
+14	PA0	GPIO_Input	SPI2_IRQ
+15	PA1	TIM2_CH2	
+16	PA2	USART2_TX	
+17	PA3	USART2_RX	
+20	PA4	GPIO_Output	SPI3_CS
+23	PA7	GPIO_EXTI7	
+25	PC5	GPIO_Output	led6
+26	PB0	GPIO_Output	led5
+27	PB1	GPIO_Output	led4
+28	PB2	GPIO_Output	led3
+29	PB10	GPIO_Output	led2
+30	PB11	GPIO_Output	led1
+33	PB12	GPIO_Output	SPI2_CS
+34	PB13	SPI2_SCK	
+35	PB14	SPI2_MISO	
+36	PB15	SPI2_MOSI	
+43	PA10	GPIO_Output	enable
+44	PA11	GPIO_Output	chipper
+45	PA12	GPIO_Output	trigger
+46	PA13	SYS_JTMS-SWDIO	
+49	PA14	SYS_JTCK-SWCLK	
+51	PC10	SPI3_SCK	
+52	PC11	SPI3_MISO	
+53	PC12	SPI3_MOSI	
+55	PB3*	SYS_JTDO-TRACESWO	
+56	PB4*	SYS_NJTRST	
+57	PB5	GPIO_Input	
+58	PB6	I2C1_SCL	
+59	PB7	I2C1_SDA	
+61	PB8	USART3_RX	
+62	PB9	USART3_TX	
+
+
+
+SOFTWARE PROJECT
+
+Project Settings : 
+Project Name : microkomop
+Project Folder : D:\Documents\STM\microkomop
+Toolchain / IDE : SW4STM32
+Firmware Package Name and Version : STM32Cube FW_F3 V1.8.0
+
+
+Code Generation Settings : 
+STM32Cube Firmware Library Package : Copy only the necessary library files
+Generate peripheral initialization as a pair of '.c/.h' files per peripheral : Yes
+Backup previously generated files when re-generating : No
+Delete previously generated files when not re-generated : Yes
+Set all free pins as analog (to optimize the power consumption) : No
+
+
+Toolchains Settings : 
+Compiler Optimizations : Balanced Size/Speed
+
+
+
+
+
+
