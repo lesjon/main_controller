@@ -50,8 +50,6 @@
 #include "commsfpga.h"
 #include "speedcalc.h"
 #include "MTiControl.h"
-
-
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
