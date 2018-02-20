@@ -56,11 +56,16 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-uint8_t address = 7 ;
+uint8_t address = 8 ;
 uint8_t freqChannel = 78;
 bool stop_after_message_complete = true;
 bool message_handled_flag = false;
 
+enum HV_states{
+	charging,
+	idle
+} HV_state = idle;
+uint HV_timer = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -163,20 +168,33 @@ int main(void)
   int stopCnt = 0;
 
   int kickPrevCnt = 1000;
-
+  int kickCount = 0;
+  //int kickCount = 0;
   UintToLeds(0);// preferably a power of 2
 
   volatile uint8_t test;
+  uint LastPackageTime;
 
   test = readReg(&hspi2, 0x05);
 
   while (1)
   {
 	  if(irqRead(&hspi2)){
-		  HAL_GPIO_WritePin(enable_GPIO_Port, enable_Pin, 1);
+		  LastPackageTime = HAL_GetTick();
+		  HV_state = charging;
 		  stopCnt = 0;
 		  roboCallback(&hspi2, &dataStruct);
 		  if(dataStruct.robotID == address){
+
+			  	  kickCount++;
+			  	  if (kickCount > 60){
+			  		HAL_GPIO_WritePin(enable_GPIO_Port, enable_Pin, 0);
+			  		kickCount = 0;
+			  	  }else if(kickCount < 60){
+			  		HAL_GPIO_WritePin(enable_GPIO_Port, enable_Pin, 1);
+			  	  }
+
+
 			  HAL_GPIO_TogglePin(led3_GPIO_Port, led3_Pin);
 			  calcMotorSpeed(&dataStruct, &wheely, &prevWheelCommand);
 
@@ -199,8 +217,23 @@ int main(void)
 			  }
 		  }
 
+	  }else{
+		  if (HAL_GetTick()-LastPackageTime>1000){
+			  HV_state = idle;
+		  }
 	  }
 
+	  /*switch(HV_state){
+	  case idle:
+		  break;
+	  case charging:
+		  if(HAL_GetTick()%1000){
+			  HAL_GPIO_WritePin(enable_GPIO_Port, enable_Pin, 0);
+		  }else{
+			  HAL_GPIO_WritePin(enable_GPIO_Port, enable_Pin, 1);
+		  }
+		  break;
+	  }*/
 
 
 	  sendReceivePacket(&hspi3, &wheely, &backWheely);
