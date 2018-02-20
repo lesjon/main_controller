@@ -341,10 +341,10 @@ void shoot(uint8_t intensity, uint8_t chipper, uint8_t id){
 	//DEBUG
 	//id == 10 because kicker 10 is broken
 	if(chipper == 0 && id != 0){
-		HAL_GPIO_WritePin(trigger_GPIO_Port, trigger_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(chipper_GPIO_Port, chipper_Pin, GPIO_PIN_SET);
 	}
 	else{
-		HAL_GPIO_WritePin(chipper_GPIO_Port, chipper_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(trigger_GPIO_Port, trigger_Pin, GPIO_PIN_SET);
 	}
 	HAL_TIM_Base_Start_IT(&htim1);
 
